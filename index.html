@@ -117,81 +117,30 @@
                 deletePeople();
             }
 
+            // Remove Person when b
+
+
+
             // Delete Person(when the (X) button is clicked)
             let deletePeople = function () {
                 const a = document.querySelectorAll('a');
                 a.forEach(link => {
                     link.addEventListener("click", removePerson)
-
                 })
+
+                function removePerson() {
+                    ul.removeChild(this.parentNode);
+                }
             }
 
-            function removePerson() {
-                ul.removeChild(this.parentNode);
-            };
+
+
 
             return {
+                addPeople: "addPeople()",
                 addPeople: addPeople()
             }
         })();
-
-        const myname = {
-            name: "oluwatayo",
-            surname: "akosile",
-            age: 20,
-            profession: "front-end developer",
-            footlength: '11inch'
-
-        }
-
-        const {
-            name,
-            age,
-            profession,
-            surname,
-            footlength
-        } = myname;
-
-
-
-        function addressmakers(city, state) {
-            const newaddress = {
-                name,
-                state
-            };
-        }
-
-
-        function addmaker(address) {
-
-            const {
-                name,
-                state
-            } = address;
-
-            const newadd = {
-                name,
-                state,
-                country: "nigeria"
-            };
-
-            console.log(`${newadd.name} ${newadd.state}`);
-        }
-
-        addmaker({
-            name: "akosile",
-            state: "lagos"
-        })
-        let incomes = [2, 2, 2, 2];
-        let total = 0;
-        for (const income of incomes) {
-            total += income
-        }
-
-        function addperson(array = [], ...num) {
-            console.log(num + array);
-        }
-        addPerson(4, 4)
     </script>
 </body>
 
