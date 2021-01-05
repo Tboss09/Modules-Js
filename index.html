@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: grid;
+        margin-top: 40vh;
+        place-items: center;
+        font-family: "poppins";
+    }
+
+    input {
+        padding: 12px;
+        outline: none;
+        font-family: "poppins";
+        font-size: 16px;
+        border: 1px black solid;
+        box-shadow: 0px 0px 0px 0px;
+    }
+
+    ul {
+        left: 70px;
+        position: relative;
+        margin: 0 auto;
+        width: 35%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    button {
+        font-family: inherit;
+        padding: 15px;
+    }
+
+    .peopleAdded {
+        background: rgba(0, 0, 0, 0.253);
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 20px 10px;
+        height: 40px;
+    }
+
+    .peopleAdded button {
+        justify-content: center;
+        align-items: center;
+        font-family: inherit;
+        font-size: 15px;
+        height: 0px;
+        width: 0px;
+        padding: 0px;
+        display: flex;
+    }
+
+    .link {
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+</style>
+
+<body>
+    <form name="addPeople">
+        <input type="text" required name="add" class="add">
+        <button class="people">Add Person</button>
+    </form>
+
+    <ul>
+    </ul>
+
+    <script>
+        let people = (function () {
+            const button = document.querySelector("button");
+            const input = document.querySelector("input");
+            const ul = document.querySelector("ul");
+            const fragment = document.createDocumentFragment();
+            const form = document.querySelector("form").addEventListener('click', (e) => {
+                e.preventDefault();
+            });
+
+            // Click Event(When Button is clicked)
+            button.addEventListener("click", addPeople)
+
+
+            // Adds Person
+            function render() {
+                const inputValue = (input).value;
+
+                if (inputValue == "") return; //Stops if nothing is typed in
+                if ((inputValue).length >= 6) return; //Stop if word length is more than 6
+                const li = document.createElement("li");
+                const liText = document.createTextNode(inputValue);
+
+
+                li.innerHTML = `<p>${inputValue}</p>
+                <a class="link" href="#">X</a>`
+
+                li.classList.add("peopleAdded");
+                fragment.append(li);
+                ul.append(fragment);
+            }
+
+            //when button is pressed
+            function addPeople() {
+                render();
+                input.value = '';
+                deletePeople();
+            }
+
+            // Delete Person(when the (X) button is clicked)
+            let deletePeople = function () {
+                const a = document.querySelectorAll('a');
+                a.forEach(link => {
+                    link.addEventListener("click", removePerson)
+
+                })
+            }
+
+            function removePerson() {
+                ul.removeChild(this.parentNode);
+            };
+
+            return {
+                addPeople: addPeople()
+            }
+        })();
+
+        const myname = {
+            name: "oluwatayo",
+            surname: "akosile",
+            age: 20,
+            profession: "front-end developer",
+            footlength: '11inch'
+
+        }
+
+        const {
+            name,
+            age,
+            profession,
+            surname,
+            footlength
+        } = myname;
+
+
+
+        function addressmakers(city, state) {
+            const newaddress = {
+                name,
+                state
+            };
+        }
+
+
+        function addmaker(address) {
+
+            const {
+                name,
+                state
+            } = address;
+
+            const newadd = {
+                name,
+                state,
+                country: "nigeria"
+            };
+
+            console.log(`${newadd.name} ${newadd.state}`);
+        }
+
+        addmaker({
+            name: "akosile",
+            state: "lagos"
+        })
+        let incomes = [2, 2, 2, 2];
+        let total = 0;
+        for (const income of incomes) {
+            total += income
+        }
+
+        function addperson(array = [], ...num) {
+            console.log(num + array);
+        }
+        addPerson(4, 4)
+    </script>
+</body>
+
+</html>

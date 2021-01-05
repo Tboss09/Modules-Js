@@ -1,0 +1,39 @@
+$font-weight :("regular":400, "medium" :500, "small" :500);
+$font-size:("heading":20px, "text" :40px, "footer" :10px);
+$text-color:green;
+
+@function weight($weight-name) {
+    @return map-get($font-weight, $weight-name)
+}
+
+;
+
+@function text-size($text) {
+    @return map-get($font-size, $text)
+}
+
+;
+
+@mixin flexCenter($color) {
+    display: flex;
+    color: $color;
+    background: #000;
+}
+
+@mixin theme($light-theme:true) {
+    @if $light-theme {
+        color: darken($text-color, 100%);
+    }
+}
+
+h1 {
+    @include flexCenter($text-color);
+    font-size: text-size(text);
+    font-weight: weight(medium);
+}
+
+.light {
+    @include theme($light-theme:true);
+
+    display: flex;
+}
